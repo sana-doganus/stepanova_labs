@@ -1,10 +1,11 @@
 # функции
-def array_print(array):  # задача 1 - вывод 1, 3, 2 с конца элемента массива
+def array_print(array, index):  # задача 1 - вывод 1, 3, 2 с конца элемента массива
     print('Исходный массив: ', array)
+    print('Элемент с индексом {0}:'.format(index), end='  ')
     try:
-        return 'Первый, третий, второй с конца элементы: {0}, {1}, {2}'.format(array[0], array[2], array[-2])
+        return array[index]
     except IndexError:
-        return 'Массив слишком мал!'
+        return 'Элемент с таким индексом не найден!'
 
 
 def exponent(array, exp):  # задача 2 - возведение N элемента в N степень в массиве
@@ -52,9 +53,9 @@ def reverse_string(string):  # задача 5 - переворот строки
 
 def same_letters(string):  # задача 6 - проверка массива на одинаковость элементов
     print('Проверка массива {0} на одинаковые значения элементов'.format(string))
-    if len(string) == 1 or len(string) == 0:
+    if len(string) == 0:
         return 'Недостаточно элементов'
-    check = 'Не все значения одинаковы'
+    check = 'Все значения одинаковы'
     for i in range(0, len(string) - 1):
         if string[i] == string[i + 1]:
             check = 'Все значения одинаковы'
@@ -129,8 +130,10 @@ def same_values(array):  # задача 10 - вывод неуникальных
 
 # задача 1 - вывод 1, 3, 2 с конца элемента массива
 print('\n--Задача 1--\n')
-print(array_print([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
-print(array_print([1]))
+print(array_print([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5))
+print(array_print([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], -2))
+print(array_print([1], 0))
+print(array_print([1], 2))
 
 # задача 2 - возведение N элемента в N степень в массиве
 print('\n--Задача 2--\n')
@@ -158,7 +161,6 @@ print(same_letters([]))
 print(same_letters([0]))
 print(same_letters([0, 0, 0, 0]))
 print(same_letters([0, 0, 0, 1, 0]))
-print(same_letters([0, 0, 0, 0, 1]))
 
 # задача 7 - проверка пароля
 print('\n--Задача 7--\n')
@@ -187,3 +189,4 @@ print(max_key({'a': 1.0, 'b': 20.0, 'c': 0.3, 'd': -40.5}))
 print('\n--Задача 10--\n')
 print(same_values([1, 2, 2, 3, 4, 5, 6, 5, 7, 8, 3, 9]))
 print(same_values([1, 2, 3]))
+
