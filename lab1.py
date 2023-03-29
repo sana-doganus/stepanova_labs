@@ -1,5 +1,5 @@
 # функции
-def array_print(array, index):  # задача 1 - вывод 1, 3, 2 с конца элемента массива
+def array_print(array, index):  # задача 1 - вывод элемента массива по заданному индексу
     print('Исходный массив: ', array)
     print('Элемент с индексом {0}:'.format(index), end='  ')
     try:
