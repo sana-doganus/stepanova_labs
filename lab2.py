@@ -55,14 +55,14 @@ def task3(arr, num):  # функция для оформления 3 задач�
 
 
 def nestsum(lst):  # задача 4 - замена всех вложенных списков суммой их элементов
-    flat_list = []
+    nest_list = []
     for item in lst:  # проходим по списку
         # если элемент список или кортеж, то вытягиваем его и суммируем, иначе просто добавляем в конечный массив
         if isinstance(item, list) or isinstance(item, tuple):
-            flat_list.append(sum(flatten(item)))
+            nest_list.append(sum(flatten(item)))
         else:
-            flat_list.append(item)
-    return flat_list
+            nest_list.append(item)
+    return nest_list
 
 
 def flatten(lst):  # доп функция вытягивания (из прошлой лабы) для задачи 4
