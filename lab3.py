@@ -154,9 +154,9 @@ def freq_sort(array):  # задача 6 - сортировка по частот
 
     # проход по значениям и вынос в конечный список (элементы повторяются столько раз, сколько указано в ключе)
     result = []
-    for repeats, num_list in sorted_nums.items():
-        for numbers in num_list:
-            result.extend([numbers for i in range(repeats)])
+    for key, value in sorted_nums.items():
+        for numbers in value:
+            result.extend([numbers for i in range(key)])
     return result
 
 
