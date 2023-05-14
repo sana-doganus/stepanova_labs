@@ -118,7 +118,7 @@ class Quadrilateral(Figure):
 
     def isNotIrregular(self):
         # если противоположные стороны равны друг другу - четырехугольник параллелограмм
-        # прямоугольник и ромб - частные случаи паралеллограмма, поэтому этой проверки достаточно
+        # прямоугольник и ромб - частные случаи параллелограмма, поэтому этой проверки достаточно
         x1, y1 = self.coords[0][0], self.coords[0][1]
         x2, y2 = self.coords[1][0], self.coords[1][1]
         x3, y3 = self.coords[2][0], self.coords[2][1]
@@ -153,10 +153,10 @@ print('Площадь: {0}\nЯвляется равносторонним/рав
 print('Пересечение с треугольником {0[0]} {0[1]} {0[2]}: {1}'.format(tr1.coords, tr3.trianglesOverlap(tr1)), end='\n\n')
 
 qu1 = Quadrilateral([(0, 0), (1, 2), (5, 7), (3, 1)])
-print('Площадь: {0}\nЯвляется паралелограммом: {1}'.format(qu1.area, qu1.isNotIrregular()), end='\n\n')
+print('Площадь: {0}\nЯвляется параллелограммом: {1}'.format(qu1.area, qu1.isNotIrregular()), end='\n\n')
 
 qu2 = Quadrilateral([(0, 0), (1, 1), (2, 1), (1, 0)])
-print('Площадь: {0}\nЯвляется паралелограммом: {1}'.format(qu2.area, qu2.isNotIrregular()), end='\n\n')
+print('Площадь: {0}\nЯвляется параллелограммом: {1}'.format(qu2.area, qu2.isNotIrregular()), end='\n\n')
 
 qu3 = Quadrilateral([(0, 0), (0, 5), (5, 5), (5, 0)])
-print('Площадь: {0}\nЯвляется паралелограммом: {1}'.format(qu3.area, qu3.isNotIrregular()), end='\n\n')
+print('Площадь: {0}\nЯвляется параллелограммом: {1}'.format(qu3.area, qu3.isNotIrregular()), end='\n\n')
