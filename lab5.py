@@ -49,7 +49,7 @@ class Triangle(Figure):
         self.__a, self.__b, self.__c = 0, 0, 0  # будут переопределены позже
 
         self.__isValidTriangle()
-        print('Треугольник с координатами', *coords)
+        print('Треугольник с координатами', *self.coords)
 
     def __isValidTriangle(self):
         if len(self.coords) != 3 or not (all(x >= 0 and y >= 0 for (x, y) in self.coords)):
@@ -94,7 +94,7 @@ class Quadrilateral(Figure):
         self.coords = coords
 
         self.isValidQuad()
-        print('Четырехугольник с координатами', *coords)
+        print('Четырехугольник с координатами', *self.coords)
 
     def isValidQuad(self):
         if len(self.coords) != 4 or not (all(x >= 0 and y >= 0 for (x, y) in self.coords)):
@@ -117,8 +117,8 @@ class Quadrilateral(Figure):
         return round(p_length(quad), 3)
 
     def isNotIrregular(self):
-        # если противоположные стороны равны друг другу - четырехугольник параллелограм
-        # прямоугольник и ромб - частные случаи паралеллограма, поэтому этой проверки достаточно
+        # если противоположные стороны равны друг другу - четырехугольник параллелограмм
+        # прямоугольник и ромб - частные случаи паралеллограмма, поэтому этой проверки достаточно
         x1, y1 = self.coords[0][0], self.coords[0][1]
         x2, y2 = self.coords[1][0], self.coords[1][1]
         x3, y3 = self.coords[2][0], self.coords[2][1]
