@@ -32,24 +32,22 @@ class QuadExceptions(Exception):
 # асбтрактный класс - фигура
 class Figure(ABC):
     @property
-    @abstractmethod
     def area(self):
-        pass
+        return p_area(Polygon(self._coords))
 
     @property
-    @abstractmethod
     def perimeter(self):
-        pass
+        return p_length(Polygon(self._coords))
 
 
-# класс - треугольник
+# дочерний класс - треугольник
 class Triangle(Figure):
     def __init__(self, coords):
         self.coords = coords
         self.__a, self.__b, self.__c = 0, 0, 0  # будут переопределены позже
 
         self.__isValidTriangle()
-        print('Треугольник с координатами', *self.coords)
+        print('Треугольник с координатами', *coords)
 
     def __isValidTriangle(self):
         if len(self.coords) != 3 or not (all(x >= 0 and y >= 0 for (x, y) in self.coords)):
@@ -88,15 +86,15 @@ class Triangle(Figure):
         return t1.intersects(t2)
 
 
-# класс - четырехугольник
+# дочерний класс - четырехугольник
 class Quadrilateral(Figure):
     def __init__(self, coords):
         self.coords = coords
 
-        self.isValidQuad()
-        print('Четырехугольник с координатами', *self.coords)
+        self.__isValidQuad()
+        print('Четырехугольник с координатами', *coords)
 
-    def isValidQuad(self):
+    def __isValidQuad(self):
         if len(self.coords) != 4 or not (all(x >= 0 and y >= 0 for (x, y) in self.coords)):
             raise FigureExceptions
         elif len(set(self.coords)) != 4:
@@ -117,8 +115,8 @@ class Quadrilateral(Figure):
         return round(p_length(quad), 3)
 
     def isNotIrregular(self):
-        # если противоположные стороны равны друг другу - четырехугольник параллелограмм
-        # прямоугольник и ромб - частные случаи параллелограмма, поэтому этой проверки достаточно
+        # если противоположные стороны равны друг другу - четырехугольник параллелограм
+        # прямоугольник и ромб - частные случаи паралеллограма, поэтому этой проверки достаточно
         x1, y1 = self.coords[0][0], self.coords[0][1]
         x2, y2 = self.coords[1][0], self.coords[1][1]
         x3, y3 = self.coords[2][0], self.coords[2][1]
@@ -131,6 +129,21 @@ class Quadrilateral(Figure):
             return True
         else:
             return False
+
+
+# дочерний класс - многоугольник
+class Test(Figure):
+    def __init__(self, coords):
+        self._coords = coords
+        print('Фигура с координатами:', *self._coords)
+
+    @property
+    def area(self):
+        return super().area
+
+    @property
+    def perimeter(self):
+        return super().perimeter
 
 
 # fail_triangle = Triangle([(0, 0), (1, 1)])
@@ -153,10 +166,18 @@ print('Площадь: {0}\nЯвляется равносторонним/рав
 print('Пересечение с треугольником {0[0]} {0[1]} {0[2]}: {1}'.format(tr1.coords, tr3.trianglesOverlap(tr1)), end='\n\n')
 
 qu1 = Quadrilateral([(0, 0), (1, 2), (5, 7), (3, 1)])
-print('Площадь: {0}\nЯвляется параллелограммом: {1}'.format(qu1.area, qu1.isNotIrregular()), end='\n\n')
+print('Площадь: {0}\nЯвляется паралелограммом: {1}'.format(qu1.area, qu1.isNotIrregular()), end='\n\n')
 
 qu2 = Quadrilateral([(0, 0), (1, 1), (2, 1), (1, 0)])
-print('Площадь: {0}\nЯвляется параллелограммом: {1}'.format(qu2.area, qu2.isNotIrregular()), end='\n\n')
+print('Площадь: {0}\nЯвляется паралелограммом: {1}'.format(qu2.area, qu2.isNotIrregular()), end='\n\n')
 
 qu3 = Quadrilateral([(0, 0), (0, 5), (5, 5), (5, 0)])
-print('Площадь: {0}\nЯвляется параллелограммом: {1}'.format(qu3.area, qu3.isNotIrregular()), end='\n\n')
+print('Площадь: {0}\nЯвляется паралелограммом: {1}'.format(qu3.area, qu3.isNotIrregular()), end='\n\n')
+
+test1 = Test([(0, 0), (0, 5), (5, 5), (5, 0)])
+print('Площадь: {0}\nПериметр: {1}'.format(test1.area, test1.perimeter), end='\n\n')
+test2 = Test([(0, 0), (0, 4), (6, 7)])
+print('Площадь: {0}\nПериметр: {1}'.format(test2.area, test2.perimeter), end='\n\n')
+test3 = Test([(0, 1), (1, 2), (2, 3), (2, 1), (1, 0)])
+print('Площадь: {0}\nПериметр: {1}'.format(test3.area, test3.perimeter), end='\n\n')
+
